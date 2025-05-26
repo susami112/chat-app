@@ -71,13 +71,13 @@
 }
 
 .fin-chat {
-  padding: 20px;
   margin-top: 40px;
-  border: 1px solid darkred;
 }
 
 .fin-chat a{
   color: darkred;
+  border: 1px solid darkred;
+  padding: 20px;
 }
 
 .messages{

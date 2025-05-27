@@ -3,55 +3,36 @@
 <div th:fragment="main_chat">
   <div class="chat-header">
       <div class="main-header-name">
-        <a href="#">hogehoge</a>
+        <div class="header-title" th:text="${room.name}">ルーム名</div>
       </div>
       <div class="fin-chat">
-        <a href="#">チャットを終了</a>
-      </div>
-    </div>
-  <div class="messages">
-    <div class="message">
-      <div class="upper-message">
-        <div class="message-user">
-          Tom
-        </div>
-        <div class="message-date">
-          2020/3/31(Wed) 12:43:30
-        </div>
-      </div>
-      <div class="lower-message">
-        <div class="message-content">
-          おはよう
-        </div>
+        <form th:action="@{/rooms/{roomId}/delete(roomId=${room.id})}" method="post">
+          <input type="submit" value="チャットを終了する"/>
+        </form>
       </div>
     </div>
 
-    <div class="message">
+  <div class="messages">
+    <div th:each="message : ${messages}" class="message">
       <div class="upper-message">
-        <div class="message-user">
-          Tom
-        </div>
-        <div class="message-date">
-          2020/3/31(Wed) 12:47:30
-        </div>
+        <div class="message-user" th:text="${message.user.name}">ユーザー名</div>
+        <div class="message-date" th:text="${#dates.format(message.createdAt, 'yyyy/MM/dd HH:mm:ss')}">日付</div>
       </div>
       <div class="lower-message">
-        <div class="message-content">
-          こんばんは
-        </div>
+        <div class="message-content" th:text="${message.content}">メッセージ内容</div>
       </div>
     </div>
   </div>
 
-  <div class="form">
+  <form th:action="@{/rooms/{roomId}/messages(roomId=${room.id})}" method="post" th:object="${messageForm}" class="form">
     <div class="form-input">
-      <input class="form-message" placeholder= "type a message">
+      <input th:field="*{content}" class="form-message" placeholder= "type a message">
       <label class="form-image">
         <span class="image-file">画像</span>
         <input type="file" class="hidden">
-      </label>  
+      </label>
     </div>
-    <input class="form-submit" type="submit" value="送信"> 
-  </div>
+    <input class="form-submit" type="submit" value="送信">  
+  </form>
   </div>
 </html>

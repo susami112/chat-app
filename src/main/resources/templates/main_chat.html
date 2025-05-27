@@ -6,7 +6,9 @@
         <div class="header-title" th:text="${room.name}">ルーム名</div>
       </div>
       <div class="fin-chat">
-        <a href="#">チャットを終了</a>
+        <form th:action="@{/rooms/{roomId}/delete(roomId=${room.id})}" method="post">
+          <input type="submit" value="チャットを終了する"/>
+        </form>
       </div>
     </div>
 

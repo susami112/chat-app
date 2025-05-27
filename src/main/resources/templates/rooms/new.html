@@ -12,6 +12,11 @@
   <div class='chat-room-form'>
     <h1>新規チャットルーム</h1>
    <form th:action="@{/rooms}" th:method="post" th:object="${roomForm}">
+<div th:if="${errorMessages}" class="chat-room-form__errors">
+  <ul>
+    <li th:each="error : ${errorMessages}" th:text="${error}"></li>
+  </ul>
+</div>
       <div class='chat-room-form__field'>
         <div class='chat-room-form__field--left'>
           <label class="chat-room-form__label" for="room_name">チャットルーム名</label>

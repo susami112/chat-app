@@ -128,3 +128,4 @@ public class RoomIntegrationTest {
     assertEquals(initialCount - 5, afterCount);
   }
 }
+
